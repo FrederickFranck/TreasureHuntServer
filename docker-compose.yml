@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  treasurehunt-server:
+    container_name: treasurehunt-server
+    build: ./server
+    image: jeroenreinenbergh/treasurehunt:server
+    ports:
+     - 1234:80
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - ./server/app:/app:ro
+    restart: always
