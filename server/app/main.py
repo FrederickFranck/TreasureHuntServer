@@ -266,7 +266,7 @@ opdracht8_json = {
     "opdracht" : {
         "id" : 8,
         "beschrijving" : (
-            "Goed gedaan dit is het einde van de huidige zoektocht"
+            "Goed gedaan dit is het einde van de huidige zoektocht !"
             )
     }
 }
@@ -274,13 +274,17 @@ opdracht8_json = {
 
 @app.post("/opdracht8")
 async def opdracht8(body: Opdracht8Body):
-    private_key = bytes.fromhex(body.prive_sleutel)
-    decrypted_data = bytes.fromhex(body.encrypted_data)
+    try:
+        private_key = bytes.fromhex(body.prive_sleutel)
+        decrypted_data = bytes.fromhex(body.encrypted_data)
 
-    cipher_rsa = PKCS1_OAEP.new(RSA.import_key(private_key))
-    decrypted_data = cipher_rsa.decrypt(decrypted_data)
-    antwoord = decrypted_data.decode('utf-8')
-    if(antwoord.lower() == "kdg"):
-        return opdracht8_json
-    else:
+        cipher_rsa = PKCS1_OAEP.new(RSA.import_key(private_key))
+        decrypted_data = cipher_rsa.decrypt(decrypted_data)
+        antwoord = decrypted_data.decode('utf-8')
+
+        if(antwoord.lower() == "kdg"):
+            return opdracht8_json
+        else:
+            return fout_antwoord
+    except:
         return fout_antwoord
