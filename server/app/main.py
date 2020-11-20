@@ -265,7 +265,7 @@ opdracht8_json = {
         "beschrijving" : (
             "goed gedaan dit is het juiste antwoord"
             )
-    },
+    }
 }
 
 
