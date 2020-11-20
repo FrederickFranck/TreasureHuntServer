@@ -260,5 +260,7 @@ async def opdracht7(body: Opdracht7Body):
 
 @app.post("/opdracht8")
 async def opdracht8(body: Opdracht8Body):
-    print(body.geheim)
-    print(body.sleutel)
+    res = {
+           "hallokes":"bokkes"
+    }
+    return res
