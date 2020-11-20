@@ -233,10 +233,13 @@ opdracht7_json = {
     "opdracht" : {
         "id" : 7,
         "beschrijving" : (
-            "Heel goed gedaan hier is de volgende opdracht:"
-            "blablabla"
-            "...")
-    }
+            "Beantwoord de vraag en stuur deze versleuteld samen met de prive sleutel door gebruik te maken van asymmetrische  encryptie."
+            "Gebruik het RSA algoritme om de keys te genereren."
+            "Stuur het versleuteld bericht en de private key door via een POST request in JSON-formaat."
+            "Je JSON ziet er als volgt uit: {'versleuteld_bericht' : '...', 'prive_sleutel' : '...'}")
+    },
+    "bericht" : "Wat is de afkorting van Karel de Grote Hogeschool",
+    "karakterset" : "utf-8"
 }
 
 @app.post("/opdracht7")
@@ -263,7 +266,7 @@ opdracht8_json = {
     "opdracht" : {
         "id" : 8,
         "beschrijving" : (
-            "goed gedaan dit is het juiste antwoord"
+            "Goed gedaan dit is het einde van de huidige zoektocht"
             )
     }
 }
@@ -277,7 +280,7 @@ async def opdracht8(body: Opdracht8Body):
     cipher_rsa = PKCS1_OAEP.new(RSA.import_key(private_key))
     decrypted_data = cipher_rsa.decrypt(decrypted_data)
     antwoord = decrypted_data.decode('utf-8')
-    if(antwoord == "juist"):
+    if(antwoord.lower() == "kdg"):
         return opdracht8_json
     else:
         return fout_antwoord
