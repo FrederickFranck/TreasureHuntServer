@@ -272,8 +272,8 @@ opdracht8_json = {
 @app.post("/opdracht8")
 async def opdracht8(body: Opdracht8Body):
     private_key = bytes.fromhex(body.prive_sleutel)
-    decrypted_data = bytes.fromhex(body.body.encrypted_data)
-    
+    decrypted_data = bytes.fromhex(body.encrypted_data)
+
     cipher_rsa = PKCS1_OAEP.new(RSA.import_key(private_key))
     decrypted_data = cipher_rsa.decrypt(decrypted_data)
     antwoord = decrypted_data.decode('utf-8')
