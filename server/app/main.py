@@ -60,8 +60,8 @@ class Opdracht7Body(BaseModel):
     nonce: str
 
 class Opdracht8Body(BaseModel):
-    geheim: str
-    sleutel: str
+    encrypted_data: str
+    prive_sleutel: str
 
 fout_antwoord = Response(content='Fout antwoord!')
 
@@ -258,9 +258,24 @@ async def opdracht7(body: Opdracht7Body):
     except:
         return fout_antwoord
 
+
+opdracht8_json = {
+    "opdracht" : {
+        "id" : 8,
+        "beschrijving" : (
+            "goed gedaan dit is het juiste antwoord"
+            )
+    },
+}
+
+
 @app.post("/opdracht8")
 async def opdracht8(body: Opdracht8Body):
-    res = {
-           "hallokes":"iedereen"
-    }
-    return res
+
+    cipher_rsa = PKCS1_OAEP.new(RSA.import_key(body.prive_sleutel))
+    decrypted_data = cipher_rsa.decrypt(body.encrypted_data)
+    antwoord = decrypted_data.decode('utf-8')
+    if(antwoord == "juist"):
+        return opdracht8_json
+    else:
+        return fout_antwoord
