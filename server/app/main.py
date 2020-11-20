@@ -60,8 +60,8 @@ class Opdracht7Body(BaseModel):
     nonce: str
 
 class Opdracht8Body(BaseModel):
-    geheim: str()
-    sleutel: str()
+    geheim: str
+    sleutel: str
 
 fout_antwoord = Response(content='Fout antwoord!')
 
