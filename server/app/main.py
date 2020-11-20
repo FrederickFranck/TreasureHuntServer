@@ -27,7 +27,7 @@ def encode_base64_bytes(message: bytes):
     base64_hex = base64_bytes.hex()
     base64_ascii = base64_bytes.decode('ascii')
     return base64_bytes, base64_hex, base64_ascii
-    
+
 def hash(file, hash_buffer):
     buffer_size = 65536  # 64 KB
     file.seek(0)
@@ -58,6 +58,10 @@ class Opdracht7Body(BaseModel):
     bericht_versleuteld: str
     sleutel: str
     nonce: str
+
+class Opdracht8Body(BaseModel):
+    geheim: str()
+    sleutel: str()
 
 fout_antwoord = Response(content='Fout antwoord!')
 
@@ -229,7 +233,9 @@ opdracht7_json = {
     "opdracht" : {
         "id" : 7,
         "beschrijving" : (
-            "Hier stopt voorlopig je zoektocht!")
+            "Heel goed gedaan hier is de volgende opdracht:"
+            "blablabla"
+            "...")
     }
 }
 
@@ -251,3 +257,8 @@ async def opdracht7(body: Opdracht7Body):
             return fout_antwoord
     except:
         return fout_antwoord
+
+@app.post("/opdracht8")
+async def opdracht8(body: Opdracht8Body)
+    print(body.geheim)
+    print(body.sleutel)
