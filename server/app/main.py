@@ -261,6 +261,6 @@ async def opdracht7(body: Opdracht7Body):
 @app.post("/opdracht8")
 async def opdracht8(body: Opdracht8Body):
     res = {
-           "hallokes":"bokkes"
+           "hallokes":"iedereen"
     }
     return res
