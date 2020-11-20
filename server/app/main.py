@@ -259,6 +259,6 @@ async def opdracht7(body: Opdracht7Body):
         return fout_antwoord
 
 @app.post("/opdracht8")
-async def opdracht8(body: Opdracht8Body)
+async def opdracht8(body: Opdracht8Body):
     print(body.geheim)
     print(body.sleutel)
