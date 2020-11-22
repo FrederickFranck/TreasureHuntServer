@@ -9,8 +9,8 @@ from Crypto.PublicKey import RSA
 
 
 #Server url
-URL = "http://185.115.217.205:1234"
-#URL = "http://bennyserver.xyz:8000"
+#URL = "http://185.115.217.205:1234"
+URL = "http://bennyserver.xyz:8000"
 
 def opdracht1():
     #eerste opdracht url
